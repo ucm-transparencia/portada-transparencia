@@ -128,7 +128,7 @@ body {
 
 /* Zona imagen — parte superior, altura fija */
 .portada-img-zona {
-  flex: 0 0 52%;
+  flex: 0 0 62%;
   position: relative;
   overflow: hidden;
 }
@@ -151,7 +151,7 @@ body {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 40%;
+  height: 25%;
   background: linear-gradient(to top, var(--rojo) 0%, transparent 100%);
   z-index: 1;
 }
@@ -166,11 +166,11 @@ body {
   flex: 1;
   position: relative;
   z-index: 3;
-  padding: clamp(16px,3vh,32px) clamp(24px,5vw,56px) clamp(14px,2.5vh,28px);
+  padding: clamp(10px,1.8vh,20px) clamp(24px,5vw,56px) clamp(8px,1.5vh,16px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px;
   flex-wrap: wrap;
   min-height: 0;
 }
@@ -193,12 +193,12 @@ body {
 }
 .portada-h1 {
   font-family: var(--fn-d);
-  font-size: clamp(22px, 3.8vw, 52px);
+  font-size: clamp(20px, 3.4vw, 44px);
   font-weight: 900;
   color: var(--blanco);
   line-height: 1.0;
-  margin-top: 4px;
-  margin-bottom: 8px;
+  margin-top: 2px;
+  margin-bottom: 6px;
 }
 .portada-sub {
   font-size: clamp(11px,1.4vw,14px);
@@ -254,7 +254,7 @@ body {
 
 .s1-head {
   background: var(--rojo);
-  padding: clamp(20px,3vh,36px) clamp(24px,5vw,64px) clamp(18px,2.5vh,28px);
+  padding: clamp(12px,1.8vh,22px) clamp(24px,5vw,64px) clamp(10px,1.5vh,18px);
   flex-shrink: 0;
 }
 .slide-cat {
@@ -293,7 +293,7 @@ body {
 }
 .kpi {
   background: var(--blanco);
-  padding: clamp(22px,3vh,38px) clamp(20px,3vw,32px) clamp(18px,2.5vh,28px);
+  padding: clamp(12px,1.8vh,22px) clamp(14px,2vw,24px) clamp(10px,1.5vh,18px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -310,7 +310,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .kpi-ico {
   width: clamp(14px,1.4vw,18px);
@@ -321,27 +321,27 @@ body {
 }
 .kpi-tag {
   font-family: var(--fn-b);
-  font-size: clamp(10px,1.1vw,12px);
+  font-size: clamp(11px,1.3vw,14px);
   font-weight: 700;
-  letter-spacing: .14em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--piedra);
 }
 .kpi-num {
   font-family: var(--fn-d);
-  font-size: clamp(32px,4vw,56px);
+  font-size: clamp(36px,4.8vw,66px);
   font-weight: 900;
   color: var(--rojo);
   line-height: 1;
   letter-spacing: -.03em;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .kpi-sub {
   font-family: var(--fn-b);
-  font-size: clamp(11px,1.1vw,13px);
+  font-size: clamp(11px,1.2vw,14px);
   color: var(--piedra);
-  line-height: 1.4;
-  margin-top: auto;
+  line-height: 1.35;
+  margin-top: 4px;
 }
 /* Tarjeta wide Estudiantes */
 .kpi-wide {
@@ -640,11 +640,11 @@ body {
 }
 .mem-stats {
   display: grid; grid-template-columns: repeat(3,1fr);
-  border-top: 2px solid var(--piedra-l);
+  border-top: 1px solid var(--piedra-l);
   flex-shrink: 0;
 }
 .mem-stat {
-  padding: clamp(14px,2vh,22px) 16px;
+  padding: clamp(8px,1.2vh,14px) 12px;
   text-align: center;
   border-right: 1px solid var(--piedra-l);
 }
@@ -702,7 +702,7 @@ body {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center;
-  padding: clamp(32px,6vh,72px) clamp(24px,8vw,80px);
+  padding: clamp(16px,3vh,36px) clamp(24px,8vw,80px);
   gap: 0;
   width: 100%;
 }
@@ -742,10 +742,10 @@ body {
   margin-bottom: 6px; letter-spacing: 0;
 }
 .s6-cta-sub {
-  font-size: clamp(13px,1.6vw,17px);
+  font-size: clamp(12px,1.4vw,15px);
   color: rgba(255,255,255,.7);
-  max-width: 500px; line-height: 1.6;
-  margin-bottom: 40px;
+  max-width: 500px; line-height: 1.5;
+  margin-bottom: 20px;
 }
 .s6-cta-links {
   display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
@@ -896,9 +896,8 @@ body {
 .s5 { background: var(--crema); }
 
 .s5-head {
-  background: var(--azul, #1a3a5c);
   background: #2c4a6e;
-  padding: clamp(18px,2.8vh,32px) clamp(24px,5vw,64px) clamp(16px,2.2vh,26px);
+  padding: clamp(10px,1.6vh,20px) clamp(24px,5vw,64px) clamp(8px,1.2vh,16px);
   flex-shrink: 0;
 }
 .s5-head .slide-cat  { color: var(--oro-l); opacity:1!important; transform:none!important; transition:none!important; }
@@ -916,10 +915,10 @@ body {
 }
 .struct-card {
   background: var(--blanco);
-  padding: clamp(14px,2vh,24px) clamp(16px,2.5vw,28px);
+  padding: clamp(8px,1.2vh,16px) clamp(14px,2vw,24px);
   display: flex;
   align-items: center;
-  gap: clamp(10px,1.5vw,18px);
+  gap: clamp(8px,1.2vw,14px);
   border-left: 3px solid transparent;
   transition: border-color .3s;
   min-height: 0;
@@ -957,12 +956,12 @@ body {
 .s6 { background: var(--crema); flex-direction: row !important; }
 
 .oferta-izq {
-  flex: 0 0 clamp(220px, 30%, 340px);
+  flex: 0 0 clamp(200px, 28%, 300px);
   background: var(--oro);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(32px,5vh,60px) clamp(24px,4vw,48px);
+  padding: clamp(16px,2.5vh,32px) clamp(18px,3vw,36px);
   position: relative;
   overflow: hidden;
 }
@@ -1026,7 +1025,7 @@ body {
 }
 .oferta-card {
   background: var(--blanco);
-  padding: clamp(16px,2.5vh,28px) clamp(16px,2.5vw,28px);
+  padding: clamp(10px,1.5vh,20px) clamp(14px,2vw,22px);
   display: flex;
   flex-direction: column;
   justify-content: center;
