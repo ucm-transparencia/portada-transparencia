@@ -747,18 +747,85 @@
     to   { opacity: 1; transform: scale(1); }
   }
 
-  @media (max-width: 700px) {
-    #s1 .kpis { grid-template-columns: 1fr 1fr; }
-    #s2 .inner, #s3 .inner, #s5 .inner { grid-template-columns: 1fr; }
-    #s4 .grid { grid-template-columns: 1fr 1fr; }
-    #s5 .right { grid-template-columns: 1fr 1fr; padding-left: 1.5rem; }
-    #s2 .right { padding: 1.5rem 5vw; }
+  /* ── TABLET (≤ 768px) ── */
+  @media (max-width: 768px) {
+
+    /* Portada */
+    #s0 .content { padding: 2rem 6vw 4.5rem; }
+    #s0 .circle { width: 180px; height: 180px; top: 5%; right: 4%; }
+
+    /* Cifras: 2 columnas */
+    #s1 .header { padding: 1.5rem 6vw 0; }
+    #s1 .kpis { grid-template-columns: 1fr 1fr; gap: .75rem; padding: .75rem 6vw 1rem; }
+    .kpi-card { padding: 1rem; }
+    .kpi-icon { width: 34px; height: 34px; margin-bottom: .6rem; }
+    .kpi-desc { display: none; }
+
+    /* Convenios: columna única, ocultar gráfico */
+    #s2 .inner { grid-template-columns: 1fr; }
+    #s2 .left { padding: 1.5rem 6vw 0; border-right: none; border-bottom: 1px solid rgba(0,0,0,.06); }
+    #s2 .right { padding: 1rem 6vw 1rem; }
+    .big-num { font-size: clamp(3rem, 12vw, 5rem); }
+    .big-num-label { margin-bottom: .75rem; }
+    .bar-group { margin-bottom: .7rem; }
+
+    /* Memoria: columna única */
+    #s3 .inner { grid-template-columns: 1fr; }
+    #s3 .left { padding: 1.5rem 6vw; justify-content: flex-start; }
     #s3 .right { display: none; }
+
+    /* Estructura: 2 columnas */
+    #s4 .header { padding: 1.2rem 6vw .8rem; }
+    #s4 .grid { grid-template-columns: 1fr 1fr; gap: .6rem; padding: 0 6vw 1rem; }
+    .struct-card { padding: .8rem 1rem; gap: .6rem; }
+    .struct-num { font-size: 1.6rem; min-width: 40px; }
+
+    /* Oferta: columna única */
+    #s5 .inner { grid-template-columns: 1fr; }
+    #s5 .left { padding: 1.2rem 6vw .5rem; justify-content: flex-start; }
+    #s5 .left p { display: none; }
+    #s5 .right { grid-template-columns: 1fr 1fr; gap: .5rem; padding: .5rem 6vw 4rem; }
+    .oferta-item { padding: .7rem .9rem; }
+    .oferta-num { font-size: 1.5rem; }
+
+    /* CTA final */
+    #s6 .content { padding: 1.5rem 6vw 4.5rem; }
+    #s6 h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); }
+    #s6 p { font-size: .85rem; margin-bottom: 1.5rem; }
+    #s6 .logo-area { margin-bottom: 1rem; }
+    .ring { display: none; }
   }
-  @media (max-width: 460px) {
-    #s1 .kpis { grid-template-columns: 1fr; }
-    #s4 .grid { grid-template-columns: 1fr; }
-    #s5 .right { grid-template-columns: 1fr; }
+
+  /* ── MÓVIL (≤ 480px) ── */
+  @media (max-width: 480px) {
+
+    /* Portada */
+    #s0 h1 { font-size: clamp(2rem, 9vw, 3rem); }
+    #s0 p { font-size: .9rem; margin-bottom: 1.5rem; }
+    #s0 .cta { padding: .75rem 1.4rem; font-size: .85rem; }
+
+    /* Cifras: 2 columnas ajustadas */
+    #s1 .kpis { grid-template-columns: 1fr 1fr; gap: .5rem; }
+    .kpi-num { font-size: 1.6rem; }
+    .kpi-label { font-size: .7rem; }
+
+    /* Convenios: ocultar barras en móvil muy pequeño, mostrar solo número grande */
+    #s2 .right { display: none; }
+    #s2 .left { padding: 2rem 6vw; border-bottom: none; justify-content: center; }
+
+    /* Estructura: 2 columnas compactas */
+    #s4 .grid { grid-template-columns: 1fr 1fr; gap: .45rem; }
+    .struct-num { font-size: 1.4rem; min-width: 36px; }
+    .struct-txt span { font-size: .75rem; }
+
+    /* Oferta: 2 columnas muy compactas */
+    #s5 .right { grid-template-columns: 1fr 1fr; gap: .4rem; }
+    .oferta-num { font-size: 1.3rem; }
+    .oferta-sub { display: none; }
+
+    /* Nav más compacto */
+    #nav { padding: .35rem .75rem; gap: .35rem; bottom: 1rem; }
+    .dot { width: 6px; height: 6px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
