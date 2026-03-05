@@ -747,85 +747,128 @@
     to   { opacity: 1; transform: scale(1); }
   }
 
-  /* ── TABLET (≤ 768px) ── */
+  /* ── TABLET / MÓVIL (≤ 768px) ── */
   @media (max-width: 768px) {
 
-    /* Portada */
-    #s0 .content { padding: 2rem 6vw 4.5rem; }
-    #s0 .circle { width: 180px; height: 180px; top: 5%; right: 4%; }
+    /* Permitir scroll vertical en todos los slides en móvil */
+    .slide {
+      overflow-y: auto;
+      padding-bottom: 4rem;
+    }
 
-    /* Cifras: 2 columnas */
-    #s1 .header { padding: 1.5rem 6vw 0; }
-    #s1 .kpis { grid-template-columns: 1fr 1fr; gap: .75rem; padding: .75rem 6vw 1rem; }
+    /* ── PORTADA ── */
+    #s0 { justify-content: center; }
+    #s0 .content { padding: 2.5rem 6vw 2rem; max-width: 100%; }
+    #s0 .circle { width: 150px; height: 150px; top: 4%; right: 4%; }
+    #s0 h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); margin-bottom: 1rem; }
+    #s0 p { font-size: .95rem; margin-bottom: 1.5rem; }
+
+    /* ── CIFRAS ── */
+    #s1 { justify-content: flex-start; }
+    #s1 .header { padding: 1.5rem 6vw .5rem; }
+    #s1 .kpis {
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+      padding: .75rem 6vw 1rem;
+      align-content: start;
+      flex: none;
+    }
     .kpi-card { padding: 1rem; }
-    .kpi-icon { width: 34px; height: 34px; margin-bottom: .6rem; }
+    .kpi-icon { width: 32px; height: 32px; margin-bottom: .5rem; }
     .kpi-desc { display: none; }
 
-    /* Convenios: columna única, ocultar gráfico */
-    #s2 .inner { grid-template-columns: 1fr; }
-    #s2 .left { padding: 1.5rem 6vw 0; border-right: none; border-bottom: 1px solid rgba(0,0,0,.06); }
+    /* ── CONVENIOS ── */
+    #s2 .inner {
+      display: flex; flex-direction: column;
+      overflow-y: visible;
+    }
+    #s2 .left {
+      padding: 1.5rem 6vw 1rem;
+      border-right: none;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+    }
     #s2 .right { padding: 1rem 6vw 1rem; }
-    .big-num { font-size: clamp(3rem, 12vw, 5rem); }
+    #s2 h2 { margin-bottom: .75rem; font-size: 1.8rem; }
+    .big-num { font-size: 3.5rem; }
     .big-num-label { margin-bottom: .75rem; }
-    .bar-group { margin-bottom: .7rem; }
+    #s2 .left > p { display: none; } /* ocultar texto largo */
+    .bar-group { margin-bottom: .75rem; }
 
-    /* Memoria: columna única */
-    #s3 .inner { grid-template-columns: 1fr; }
-    #s3 .left { padding: 1.5rem 6vw; justify-content: flex-start; }
-    #s3 .right { display: none; }
+    /* ── MEMORIA ── */
+    #s3 .inner {
+      display: flex; flex-direction: column;
+      overflow-y: visible;
+    }
+    #s3 .left {
+      padding: 1.8rem 6vw 1.5rem;
+      border-right: none;
+    }
+    #s3 h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); margin-bottom: .6rem; }
+    #s3 .subtitle { font-size: .9rem; margin-bottom: 1.2rem; }
+    #s3 .right {
+      display: flex; flex-direction: column;
+      padding: .5rem 6vw 1rem;
+      background: rgba(183,18,52,.03);
+    }
 
-    /* Estructura: 2 columnas */
-    #s4 .header { padding: 1.2rem 6vw .8rem; }
-    #s4 .grid { grid-template-columns: 1fr 1fr; gap: .6rem; padding: 0 6vw 1rem; }
-    .struct-card { padding: .8rem 1rem; gap: .6rem; }
-    .struct-num { font-size: 1.6rem; min-width: 40px; }
+    /* ── ESTRUCTURA ── */
+    #s4 { justify-content: flex-start; }
+    #s4 .header { padding: 1.2rem 6vw .75rem; }
+    #s4 .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+      padding: 0 6vw 1rem;
+      flex: none;
+    }
+    .struct-card { padding: .85rem .9rem; gap: .6rem; }
+    .struct-num { font-size: 1.5rem; min-width: 38px; }
+    .struct-txt small { font-size: .6rem; }
+    .struct-txt span { font-size: .78rem; }
 
-    /* Oferta: columna única */
-    #s5 .inner { grid-template-columns: 1fr; }
-    #s5 .left { padding: 1.2rem 6vw .5rem; justify-content: flex-start; }
-    #s5 .left p { display: none; }
-    #s5 .right { grid-template-columns: 1fr 1fr; gap: .5rem; padding: .5rem 6vw 4rem; }
-    .oferta-item { padding: .7rem .9rem; }
-    .oferta-num { font-size: 1.5rem; }
+    /* ── OFERTA ACADÉMICA ── */
+    #s5 .inner {
+      display: flex; flex-direction: column;
+    }
+    #s5 .left {
+      padding: 1.5rem 6vw .75rem;
+      background: linear-gradient(135deg, rgba(183,18,52,.05) 0%, rgba(155,137,66,.03) 100%);
+    }
+    #s5 h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); margin-bottom: .4rem; }
+    #s5 p { font-size: .85rem; }
+    #s5 .right {
+      grid-template-columns: 1fr 1fr;
+      gap: .55rem;
+      padding: .75rem 6vw 1rem;
+    }
+    .oferta-item { padding: .85rem 1rem; }
+    .oferta-num { font-size: 1.6rem; }
 
-    /* CTA final */
-    #s6 .content { padding: 1.5rem 6vw 4.5rem; }
-    #s6 h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); }
-    #s6 p { font-size: .85rem; margin-bottom: 1.5rem; }
-    #s6 .logo-area { margin-bottom: 1rem; }
+    /* ── CTA FINAL ── */
+    #s6 { justify-content: flex-start; align-items: stretch; }
+    #s6 .content {
+      padding: 2.5rem 6vw 2rem;
+      max-width: 100%;
+      text-align: center;
+    }
+    #s6 h2 { font-size: clamp(1.5rem, 6vw, 2.4rem); }
+    #s6 p { font-size: .9rem; margin-bottom: 1.5rem; }
     .ring { display: none; }
+
+    /* Nav */
+    #nav { bottom: .75rem; padding: .35rem .75rem; gap: .4rem; }
+    .dot { width: 6px; height: 6px; }
   }
 
-  /* ── MÓVIL (≤ 480px) ── */
-  @media (max-width: 480px) {
-
-    /* Portada */
-    #s0 h1 { font-size: clamp(2rem, 9vw, 3rem); }
-    #s0 p { font-size: .9rem; margin-bottom: 1.5rem; }
-    #s0 .cta { padding: .75rem 1.4rem; font-size: .85rem; }
-
-    /* Cifras: 2 columnas ajustadas */
-    #s1 .kpis { grid-template-columns: 1fr 1fr; gap: .5rem; }
-    .kpi-num { font-size: 1.6rem; }
-    .kpi-label { font-size: .7rem; }
-
-    /* Convenios: ocultar barras en móvil muy pequeño, mostrar solo número grande */
-    #s2 .right { display: none; }
-    #s2 .left { padding: 2rem 6vw; border-bottom: none; justify-content: center; }
-
-    /* Estructura: 2 columnas compactas */
-    #s4 .grid { grid-template-columns: 1fr 1fr; gap: .45rem; }
-    .struct-num { font-size: 1.4rem; min-width: 36px; }
-    .struct-txt span { font-size: .75rem; }
-
-    /* Oferta: 2 columnas muy compactas */
-    #s5 .right { grid-template-columns: 1fr 1fr; gap: .4rem; }
+  /* ── MÓVIL PEQUEÑO (≤ 420px) ── */
+  @media (max-width: 420px) {
+    #s0 h1 { font-size: 2rem; }
+    .kpi-num { font-size: 1.5rem; }
+    .kpi-label { font-size: .68rem; }
+    .struct-num { font-size: 1.3rem; }
     .oferta-num { font-size: 1.3rem; }
     .oferta-sub { display: none; }
-
-    /* Nav más compacto */
-    #nav { padding: .35rem .75rem; gap: .35rem; bottom: 1rem; }
-    .dot { width: 6px; height: 6px; }
+    #s6 h2 { font-size: 1.4rem; }
+    .btn-solid, .btn-ghost { padding: .6rem 1.1rem; font-size: .8rem; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
