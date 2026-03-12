@@ -69,15 +69,27 @@
     border-radius: 2rem;
   }
   .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: rgba(255,255,255,.3);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: transparent;
     cursor: pointer; transition: all .3s;
     border: none;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
   }
-  .dot.on { background: var(--rojo); transform: scale(1.4); }
+  /* Visual dot inside the tap target */
+  .dot::after {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    transition: all .3s;
+    display: block;
+  }
+  .dot.on::after { background: var(--rojo); transform: scale(1.4); }
   #btn-prev, #btn-next {
     background: none; border: none; cursor: pointer;
-    color: rgba(255,255,255,.6); font-size: 1.1rem; padding: .2rem .4rem;
+    color: rgba(255,255,255,.6); font-size: 1.1rem;
+    min-width: 44px; min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
     transition: color .2s;
   }
   #btn-prev:hover, #btn-next:hover { color: #fff; }
@@ -88,7 +100,7 @@
     background: rgba(0,0,0,.3); backdrop-filter: blur(6px);
     border: 1px solid rgba(255,255,255,.2);
     color: #fff; border-radius: 50%;
-    width: 38px; height: 38px;
+    width: 44px; height: 44px;
     cursor: pointer; font-size: .85rem;
     display: flex; align-items: center; justify-content: center;
     z-index: 50; transition: background .2s;
@@ -737,7 +749,162 @@
     display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
   }
 
-  /* ── SHARED KEYFRAMES ── */
+  /* ════════════════════════════════════
+     SLIDE DYNTRA — RANKING TRANSPARENCIA
+  ════════════════════════════════════ */
+  #sdyntra {
+    background: var(--gris-lt);
+    overflow: hidden;
+    justify-content: center;
+  }
+  #sdyntra .top-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, var(--rojo), var(--oro));
+  }
+  #sdyntra .deco-num {
+    position: absolute; right: -1rem; bottom: -2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(8rem, 20vw, 18rem); font-weight: 900;
+    color: rgba(183,18,52,.05); line-height: 1;
+    pointer-events: none; user-select: none;
+  }
+  #sdyntra .inner {
+    flex: 1;
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    position: relative; z-index: 2;
+  }
+  #sdyntra .left {
+    padding: 2.5rem 2.5rem 2.5rem 5vw;
+    display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid rgba(0,0,0,.07);
+  }
+  #sdyntra .tag {
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: var(--rojo); margin-bottom: .6rem;
+    opacity: 0;
+  }
+  #sdyntra.active .tag { animation: fadeUp .5s .1s forwards; }
+  #sdyntra h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    font-weight: 700; color: var(--negro);
+    line-height: 1.1; margin-bottom: 1rem;
+    opacity: 0;
+  }
+  #sdyntra.active h2 { animation: fadeUp .5s .2s forwards; }
+  #sdyntra .desc {
+    font-size: .88rem; color: #666; line-height: 1.65;
+    margin-bottom: 1.5rem; max-width: 340px;
+    opacity: 0;
+  }
+  #sdyntra.active .desc { animation: fadeUp .5s .3s forwards; }
+  #sdyntra .dyntra-link {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .82rem; font-weight: 600; color: var(--rojo);
+    text-decoration: none; letter-spacing: .04em;
+    opacity: 0;
+  }
+  #sdyntra.active .dyntra-link { animation: fadeUp .5s .45s forwards; }
+  #sdyntra .dyntra-link:hover { text-decoration: underline; }
+  #sdyntra .dyntra-link svg { width: 13px; height: 13px; }
+
+  /* Right: ascension chart */
+  #sdyntra .right {
+    padding: 2rem 5vw 2rem 2.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 1rem;
+  }
+  #sdyntra .chart-title {
+    font-size: .7rem; font-weight: 700; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--gris);
+    opacity: 0;
+  }
+  #sdyntra.active .chart-title { animation: fadeUp .4s .2s forwards; }
+
+  /* Arrow ascension visual */
+  #sdyntra .ascent {
+    display: flex; align-items: flex-end; gap: 1.2rem;
+    opacity: 0;
+  }
+  #sdyntra.active .ascent { animation: fadeUp .6s .35s forwards; }
+  .ascent-step {
+    display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    flex: 1;
+  }
+  .ascent-bar-wrap {
+    width: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end;
+    height: 130px;
+  }
+  .ascent-bar {
+    width: 100%; border-radius: 3px 3px 0 0;
+    background: var(--gris-lt);
+    border: 1px solid rgba(0,0,0,.08);
+    transition: height 1.1s cubic-bezier(.4,0,.2,1);
+    position: relative;
+  }
+  .ascent-bar.highlight {
+    background: linear-gradient(to top, var(--rojo-dk), var(--rojo));
+    border-color: var(--rojo);
+  }
+  .ascent-bar.mid {
+    background: linear-gradient(to top, #c94060, #e05070);
+    border-color: #c94060;
+    opacity: .75;
+  }
+  .ascent-pos {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900;
+    color: var(--negro); line-height: 1;
+  }
+  .ascent-step.best .ascent-pos { color: var(--rojo); font-size: 1.7rem; }
+  .ascent-year {
+    font-size: .68rem; font-weight: 600; color: var(--gris);
+    letter-spacing: .08em;
+  }
+  .ascent-arrow {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: flex-end; padding-bottom: 2.2rem; color: var(--rojo);
+  }
+  .ascent-arrow svg { width: 22px; height: 22px; }
+
+  /* Highlight badge */
+  #sdyntra .badge-row {
+    display: flex; gap: .75rem; flex-wrap: wrap;
+    opacity: 0;
+  }
+  #sdyntra.active .badge-row { animation: fadeUp .5s .6s forwards; }
+  .dyntra-badge {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 3px;
+    padding: .65rem 1rem;
+    display: flex; align-items: center; gap: .6rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    flex: 1; min-width: 140px;
+  }
+  .dyntra-badge-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(183,18,52,.08);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .dyntra-badge-icon svg { width: 16px; height: 16px; stroke: var(--rojo); fill: none; stroke-width: 1.8; }
+  .dyntra-badge-txt strong {
+    display: block; font-size: .78rem; font-weight: 700; color: var(--negro);
+  }
+  .dyntra-badge-txt span {
+    font-size: .7rem; color: var(--gris);
+  }
+
+  @media (max-width: 768px) {
+    #sdyntra .inner { display: flex; flex-direction: column; }
+    #sdyntra .left { padding: 1.5rem 6vw 1rem; border-right: none; border-bottom: 1px solid rgba(0,0,0,.07); }
+    #sdyntra .right { padding: 1rem 6vw 1rem; gap: .75rem; }
+    .ascent-bar-wrap { height: 90px; }
+    #sdyntra .desc { display: none; }
+  }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -902,6 +1069,90 @@
         Explorar el portal
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
       </a>
+    </div>
+  </section>
+
+  <!-- SLIDE DYNTRA: RANKING TRANSPARENCIA -->
+  <section class="slide" id="sdyntra" aria-label="Ranking Dyntra Transparencia">
+    <div class="top-bar"></div>
+    <div class="deco-num" aria-hidden="true">5ª</div>
+    <div class="inner">
+      <div class="left">
+        <p class="tag">Transparencia · Dyntra 2026</p>
+        <h2>Entre las más<br>transparentes<br><span style="color:var(--rojo)">de España</span></h2>
+        <p class="desc">La UCM ocupa la 5ª posición en la evaluación preliminar del estudio Dyntra 2026 sobre transparencia de universidades españolas, con un cumplimiento del <strong style="color:var(--rojo)">94,67%</strong> de los 169 indicadores. Los resultados definitivos se publicarán el 8 de abril de 2026.</p>
+        <a href="https://www.dyntra.org/poi/universidad-complutense-de-madrid/?prev=indices/universidades" class="dyntra-link" target="_blank" rel="noopener">
+          Ver evaluación en Dyntra
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+      <div class="right">
+        <p class="chart-title">Evolución en el ranking Dyntra · Universidades públicas</p>
+
+        <!-- Ascension bars -->
+        <div class="ascent" id="dyntra-ascent">
+          <div class="ascent-step">
+            <div class="ascent-bar-wrap">
+              <div class="ascent-bar" id="db-2019" style="height:0%" data-h="28%"></div>
+            </div>
+            <div class="ascent-pos">6ª</div>
+            <div class="ascent-year">2019</div>
+          </div>
+          <div class="ascent-arrow">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          </div>
+          <div class="ascent-step">
+            <div class="ascent-bar-wrap">
+              <div class="ascent-bar mid" id="db-2022" style="height:0%" data-h="55%"></div>
+            </div>
+            <div class="ascent-pos">4ª</div>
+            <div class="ascent-year">2022</div>
+          </div>
+          <div class="ascent-arrow">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          </div>
+          <div class="ascent-step">
+            <div class="ascent-bar-wrap">
+              <div class="ascent-bar mid" id="db-2024" style="height:0%" data-h="82%"></div>
+            </div>
+            <div class="ascent-pos">3ª</div>
+            <div class="ascent-year">Nov. 2024</div>
+          </div>
+          <div class="ascent-arrow">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          </div>
+          <div class="ascent-step best">
+            <div class="ascent-bar-wrap">
+              <div class="ascent-bar highlight" id="db-2026" style="height:0%" data-h="100%"></div>
+            </div>
+            <div class="ascent-pos">5ª*</div>
+            <div class="ascent-year">2026 ✦</div>
+          </div>
+        </div>
+        <p style="font-size:.65rem;color:var(--gris);margin-top:.3rem">* Evaluación preliminar. Resultados definitivos: 8 abril 2026</p>
+
+        <!-- Badges -->
+        <div class="badge-row">
+          <div class="dyntra-badge">
+            <div class="dyntra-badge-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="dyntra-badge-txt">
+              <strong>Top 5 universidades públicas</strong>
+              <span>Dyntra 2026 · 94,67% indicadores</span>
+            </div>
+          </div>
+          <div class="dyntra-badge">
+            <div class="dyntra-badge-icon">
+              <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div class="dyntra-badge-txt">
+              <strong>Mejora continua</strong>
+              <span>De 6ª a 3ª entre 2019 y 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1139,6 +1390,7 @@
   <button class="dot"     aria-label="Diapositiva 5"></button>
   <button class="dot"     aria-label="Diapositiva 6"></button>
   <button class="dot"     aria-label="Diapositiva 7"></button>
+  <button class="dot"     aria-label="Diapositiva 8"></button>
   <button id="btn-next" aria-label="Siguiente diapositiva">&#8594;</button>
 </nav>
 
@@ -1164,7 +1416,7 @@ let cur = 0, timer, running = true, startT, elapsed = 0;
 
 // Labels for screen reader
 const labels = [
-  'Portada', 'UCM en Cifras', 'Convenios', 'Memoria Académica',
+  'Portada', 'Ranking Dyntra Transparencia', 'UCM en Cifras', 'Convenios', 'Memoria Académica',
   'Estructura', 'Oferta Académica', 'Portal de Transparencia'
 ];
 
@@ -1179,8 +1431,9 @@ function goTo(n, dir = 1) {
   live.textContent = `Diapositiva ${cur + 1} de ${TOTAL}: ${labels[cur]}`;
   prog.style.width = '0%';
   prog.setAttribute('aria-valuenow', 0);
-  if (cur === 1) animKPIs();
-  if (cur === 2) animBars();
+  if (cur === 1) animDyntra();
+  if (cur === 2) animKPIs();
+  if (cur === 3) animBars();
   elapsed = 0;
   if (running) startTimer();
 }
@@ -1245,6 +1498,13 @@ document.addEventListener('touchend', e => {
 document.addEventListener('visibilitychange', () => {
   document.hidden ? pause() : (running ? resume() : null);
 });
+
+// Dyntra bars animation
+function animDyntra() {
+  document.querySelectorAll('.ascent-bar[data-h]').forEach((el, i) => {
+    setTimeout(() => { el.style.height = el.dataset.h; }, 200 + i * 200);
+  });
+}
 
 // KPI counter animation
 function animKPIs() {
